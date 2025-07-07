@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report an Issue – SchoolFix</title>
+      <link rel="icon" href="favicon.jpeg">
+  <style>
+    :root {
+      --primary-color: #f4c542;
+      --text-color: #333;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+    }
+
+    .hero {
+      background-color: var(--primary-color);
+      border-bottom-left-radius: 50px;
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+      max-width: 50%;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+      text-align: right;
+    }
+
+    .hero-image img {
+      width: 150px;
+      max-width: 100%;
+    }
+
+    .form-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    label {
+      display: block;
+      margin-top: 1.25rem;
+      font-weight: 600;
+    }
+
+    select,
+    textarea,
+    input[type="text"],
+    input[type="range"] {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .urgency-container {
+      margin-top: 1.5rem;
+    }
+
+    .urgency-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .submit-btn {
+      margin-top: 2rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #d9a40a;
+    }
+
+    .success-message {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-top: 2rem;
+      color: #28a745;
+    }
+
+    .ref-number {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text, .hero-image {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Report a Maintenance Issue</h1>
+      <p>Help us keep the school running smoothly. Submit issues easily below.</p>
+    </div>
+    <div class="hero-image">
+<a href="index.html" data-page-id="959811020" class="u-image u-logo u-image-1" data-image-width="675" data-image-height="457">
+          <img src="Screenshot_23-6-2025_131931_looka.com.jpeg" class="u-logo-image u-logo-image-1" title="Home">
+        </a>
+    </div>
+  </section>
+
+  <div class="form-wrapper">
+    <div class="container" id="formContainer">
+      <h2>Submit an Issue</h2>
+      <form id="issueForm">
+        <label for="studentName">Your Name and Class:</label>
+        <input type="text" id="studentName" required placeholder="e.g. Nimal Perera – 8C">
+
+        <label for="category">Issue Type:</label>
+        <select id="category" required>
+          <option value="">-- Select Category --</option>
+          <option>Electrical</option>
+          <option>Plumbing</option>
+          <option>Furniture</option>
+          <option>Cleanliness</option>
+          <option>Safety</option>
+          <option>Other</option>
+        </select>
+
+        <label for="location">Location:</label>
+        <select id="location" required>
+          <option value="">-- Select Location --</option>
+          <option>Main Hall</option>
+          <option>Science Lab</option>
+          <option>Computer Room</option>
+          <option>Canteen</option>
+          <option>Library</option>
+        </select>
+
+        <label for="description">Description:</label>
+        <textarea id="description" rows="4" required placeholder="Describe the issue..."></textarea>
+
+        <div class="urgency-container">
+          <label for="urgency">Urgency:</label>
+          <input type="range" id="urgency" min="1" max="3" value="2">
+          <div class="urgency-labels">
+            <span>Low</span>
+            <span>Medium</span>
+            <span>High</span>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">📤 Submit Report</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("issueForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const category = document.getElementById("category").value;
+      const location = document.getElementById("location").value;
+      const description = document.getElementById("description").value;
+      const studentName = document.getElementById("studentName").value;
+
+      if (category && location && description && studentName) {
+        document.getElementById("formContainer").innerHTML = `
+          <div class="success-message">✅ Your report has been submitted successfully!</div>
+          <div class="ref-number">Reference No: <strong>0901102025</strong></div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
